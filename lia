@@ -1,0 +1,16 @@
+import sys
+sys.path.append('../')
+from rosalind_utils import *
+
+def cum(k, n, p):
+    """The probability of having at least k in n trials"""
+    return sum(choose(n, i) * p**i * (1-p)**(n-i) for i in range(k, n+1))
+
+def lia():
+    # Input values (k, n) directly
+    k, n = 2, 1
+
+    # The probability of AaBb offspring is always 0.25
+    print(cum(n, 2**k, 0.25))
+
+lia()
