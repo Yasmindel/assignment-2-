@@ -1,0 +1,17 @@
+import sys
+sys.path.append('../')
+import rosalind_utils
+
+def mrna():
+    # Input sequence (MA) for demonstration
+    seq = "MA"  # You can change this string as needed
+    n = 1
+    for b in seq:
+        diff_code = len([x for x in rosalind_utils.GENCODE
+                         if rosalind_utils.GENCODE[x] == b])
+        n = (n * diff_code) % 10**6
+    # Stop codon
+    n = (n * 3) % 10**6
+    print(n)
+
+mrna()
