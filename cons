@@ -1,0 +1,26 @@
+import sys
+sys.path.append('../')
+import rosalind_utils
+import operator
+def cons():
+    # read sequences
+    recs = rosalind_utils.read_fasta("rosalind_cons.txt")
+    seqs = [rec[1] for rec in recs]
+    matrix = []
+    for i in xrange(len(seqs[0])):
+        d = {'A':0, 'C':0, 'G':0, 'T':0}
+        for seq in seqs:
+            d[seq[i]] += 1
+        matrix.append(d)
+
+    # print consensus
+    consensus = ''.join(max(col.iteritems(), key=operator.itemgetter(1))[0]
+                        for col in matrix)
+    print consensus
+    # print matrix
+    print 'A:', ' '.join(str(col['A']) for col in matrix)
+    print 'C:', ' '.join(str(col['C']) for col in matrix)
+    print 'G:', ' '.join(str(col['G']) for col in matrix)
+    print 'T:', ' '.join(str(col['T']) for col in matrix)
+
+cons()
