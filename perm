@@ -1,0 +1,17 @@
+import sys
+sys.path.append('../')
+import rosalind_utils
+import itertools
+import math  # for factorial function
+
+def perm():
+    n = int(open("rosalind_perm.txt").read())
+    
+    # Calculate the factorial of n using math.factorial()
+    print(math.factorial(n))
+    
+    # Print all permutations
+    for p in itertools.permutations(range(1, n+1)):
+        print(' '.join(map(str, p)))
+
+perm()
